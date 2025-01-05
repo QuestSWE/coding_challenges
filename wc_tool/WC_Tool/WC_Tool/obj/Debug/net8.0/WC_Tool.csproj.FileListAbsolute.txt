@@ -1,0 +1,15 @@
+C:\Users\Guts\Projects\coding_challenges\wc_tool\WC_Tool\WC_Tool\bin\Debug\net8.0\WC_Tool.exe
+C:\Users\Guts\Projects\coding_challenges\wc_tool\WC_Tool\WC_Tool\bin\Debug\net8.0\WC_Tool.deps.json
+C:\Users\Guts\Projects\coding_challenges\wc_tool\WC_Tool\WC_Tool\bin\Debug\net8.0\WC_Tool.runtimeconfig.json
+C:\Users\Guts\Projects\coding_challenges\wc_tool\WC_Tool\WC_Tool\bin\Debug\net8.0\WC_Tool.dll
+C:\Users\Guts\Projects\coding_challenges\wc_tool\WC_Tool\WC_Tool\bin\Debug\net8.0\WC_Tool.pdb
+C:\Users\Guts\Projects\coding_challenges\wc_tool\WC_Tool\WC_Tool\obj\Debug\net8.0\WC_Tool.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Guts\Projects\coding_challenges\wc_tool\WC_Tool\WC_Tool\obj\Debug\net8.0\WC_Tool.AssemblyInfoInputs.cache
+C:\Users\Guts\Projects\coding_challenges\wc_tool\WC_Tool\WC_Tool\obj\Debug\net8.0\WC_Tool.AssemblyInfo.cs
+C:\Users\Guts\Projects\coding_challenges\wc_tool\WC_Tool\WC_Tool\obj\Debug\net8.0\WC_Tool.csproj.CoreCompileInputs.cache
+C:\Users\Guts\Projects\coding_challenges\wc_tool\WC_Tool\WC_Tool\obj\Debug\net8.0\WC_Tool.sourcelink.json
+C:\Users\Guts\Projects\coding_challenges\wc_tool\WC_Tool\WC_Tool\obj\Debug\net8.0\WC_Tool.dll
+C:\Users\Guts\Projects\coding_challenges\wc_tool\WC_Tool\WC_Tool\obj\Debug\net8.0\refint\WC_Tool.dll
+C:\Users\Guts\Projects\coding_challenges\wc_tool\WC_Tool\WC_Tool\obj\Debug\net8.0\WC_Tool.pdb
+C:\Users\Guts\Projects\coding_challenges\wc_tool\WC_Tool\WC_Tool\obj\Debug\net8.0\WC_Tool.genruntimeconfig.cache
+C:\Users\Guts\Projects\coding_challenges\wc_tool\WC_Tool\WC_Tool\obj\Debug\net8.0\ref\WC_Tool.dll
