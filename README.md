@@ -8,6 +8,6 @@
  ╚═════╝ ╚═════╝ ╚═════╝ ╚═╝╚═╝  ╚═══╝ ╚═════╝      ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝
 ```
 
-##About this Repository
+## About this Repository
 
 This repository is dedicated to programming challenges I plan to tackle from codingchallenges.fyi. It is part of my journey to enhance my programming skills and deepen my understanding of various concepts through hands-on practice.                                                                                                                                  
