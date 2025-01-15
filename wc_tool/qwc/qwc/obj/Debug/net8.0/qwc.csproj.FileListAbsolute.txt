@@ -1,0 +1,15 @@
+C:\Users\Guts\Projects\coding_challenges\wc_tool\qwc\qwc\bin\Debug\net8.0\qwc.exe
+C:\Users\Guts\Projects\coding_challenges\wc_tool\qwc\qwc\bin\Debug\net8.0\qwc.deps.json
+C:\Users\Guts\Projects\coding_challenges\wc_tool\qwc\qwc\bin\Debug\net8.0\qwc.runtimeconfig.json
+C:\Users\Guts\Projects\coding_challenges\wc_tool\qwc\qwc\bin\Debug\net8.0\qwc.dll
+C:\Users\Guts\Projects\coding_challenges\wc_tool\qwc\qwc\bin\Debug\net8.0\qwc.pdb
+C:\Users\Guts\Projects\coding_challenges\wc_tool\qwc\qwc\obj\Debug\net8.0\qwc.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Guts\Projects\coding_challenges\wc_tool\qwc\qwc\obj\Debug\net8.0\qwc.AssemblyInfoInputs.cache
+C:\Users\Guts\Projects\coding_challenges\wc_tool\qwc\qwc\obj\Debug\net8.0\qwc.AssemblyInfo.cs
+C:\Users\Guts\Projects\coding_challenges\wc_tool\qwc\qwc\obj\Debug\net8.0\qwc.csproj.CoreCompileInputs.cache
+C:\Users\Guts\Projects\coding_challenges\wc_tool\qwc\qwc\obj\Debug\net8.0\qwc.sourcelink.json
+C:\Users\Guts\Projects\coding_challenges\wc_tool\qwc\qwc\obj\Debug\net8.0\qwc.dll
+C:\Users\Guts\Projects\coding_challenges\wc_tool\qwc\qwc\obj\Debug\net8.0\refint\qwc.dll
+C:\Users\Guts\Projects\coding_challenges\wc_tool\qwc\qwc\obj\Debug\net8.0\qwc.pdb
+C:\Users\Guts\Projects\coding_challenges\wc_tool\qwc\qwc\obj\Debug\net8.0\qwc.genruntimeconfig.cache
+C:\Users\Guts\Projects\coding_challenges\wc_tool\qwc\qwc\obj\Debug\net8.0\ref\qwc.dll

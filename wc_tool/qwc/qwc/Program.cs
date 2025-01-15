@@ -1,13 +1,15 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-class Program
+
+namespace qwc
 {
-    static void Main(string[] args)
+    internal class Program
     {
-
-
-
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Hello, World!");
+        }
     }
 }
 

@@ -1,10 +1,10 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Guts\\Projects\\coding_challenges\\wc_tool\\WC_Tool\\",
+  "WorkspaceRootPath": "C:\\Users\\Guts\\Projects\\coding_challenges\\wc_tool\\qwc\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{844EAD04-AA97-45E9-888D-5381DA8DBFCD}|WC_Tool\\qwc.csproj|c:\\users\\guts\\projects\\coding_challenges\\wc_tool\\wc_tool\\wc_tool\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{844EAD04-AA97-45E9-888D-5381DA8DBFCD}|WC_Tool\\qwc.csproj|solutionrelative:wc_tool\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{29D7FE69-F472-419D-991D-747D86ECE24B}|qwc\\qwc.csproj|c:\\users\\guts\\projects\\coding_challenges\\wc_tool\\qwc\\qwc\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29D7FE69-F472-419D-991D-747D86ECE24B}|qwc\\qwc.csproj|solutionrelative:qwc\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -20,13 +20,13 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Guts\\Projects\\coding_challenges\\wc_tool\\WC_Tool\\WC_Tool\\Program.cs",
-              "RelativeDocumentMoniker": "WC_Tool\\Program.cs",
-              "ToolTip": "C:\\Users\\Guts\\Projects\\coding_challenges\\wc_tool\\WC_Tool\\WC_Tool\\Program.cs",
-              "RelativeToolTip": "WC_Tool\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "DocumentMoniker": "C:\\Users\\Guts\\Projects\\coding_challenges\\wc_tool\\qwc\\qwc\\Program.cs",
+              "RelativeDocumentMoniker": "qwc\\Program.cs",
+              "ToolTip": "C:\\Users\\Guts\\Projects\\coding_challenges\\wc_tool\\qwc\\qwc\\Program.cs",
+              "RelativeToolTip": "qwc\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-05T08:48:14.26Z",
+              "WhenOpened": "2025-01-15T07:36:55.104Z",
               "EditorCaption": ""
             }
           ]

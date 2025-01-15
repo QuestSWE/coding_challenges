@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Guts\\Projects\\coding_challenges\\wc_tool\\WC_Tool\\WC_Tool\\qwc.csproj": {}
+    "C:\\Users\\Guts\\Projects\\coding_challenges\\wc_tool\\qwc\\qwc\\qwc.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Guts\\Projects\\coding_challenges\\wc_tool\\WC_Tool\\WC_Tool\\qwc.csproj": {
+    "C:\\Users\\Guts\\Projects\\coding_challenges\\wc_tool\\qwc\\qwc\\qwc.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Guts\\Projects\\coding_challenges\\wc_tool\\WC_Tool\\WC_Tool\\qwc.csproj",
+        "projectUniqueName": "C:\\Users\\Guts\\Projects\\coding_challenges\\wc_tool\\qwc\\qwc\\qwc.csproj",
         "projectName": "qwc",
-        "projectPath": "C:\\Users\\Guts\\Projects\\coding_challenges\\wc_tool\\WC_Tool\\WC_Tool\\qwc.csproj",
+        "projectPath": "C:\\Users\\Guts\\Projects\\coding_challenges\\wc_tool\\qwc\\qwc\\qwc.csproj",
         "packagesPath": "C:\\Users\\Guts\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Guts\\Projects\\coding_challenges\\wc_tool\\WC_Tool\\WC_Tool\\obj\\",
+        "outputPath": "C:\\Users\\Guts\\Projects\\coding_challenges\\wc_tool\\qwc\\qwc\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
