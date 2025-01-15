@@ -1,12 +1,14 @@
 ﻿using Microsoft.VisualBasic.FileIO;
-using System;
-using System.IO;
-using System.Linq;
+
 
 namespace qwc
 {
     internal class Program
     {
+        // Delimiters used to split lines into words (e.g., spaces, punctuation marks).
+        // This static field is used in the CountWordsInFile method for splitting text.
+        internal static readonly char[] separator = [' ', '.', ',', '!', '?', ':', ';'];
+
         static void Main(string[] args)
         {
             if (args.Length < 2)
@@ -26,14 +28,19 @@ namespace qwc
             }
             else
             {
-                CountWordInFile(args[1]);
+                CountWordsInFile(args[1]);
             }
 
-            static void CountWordInFile(string filePath)
+            static void CountWordsInFile(string filePath)
             {
+                IEnumerable<string> lines = File.ReadLines(filePath);
 
-                string text = File.ReadAllText(filePath);
-                string[] words = text.Split();
+                foreach (string line in lines)
+                {
+                    string[] words = line.Split(separator, StringSplitOptions.RemoveEmptyEntries);
+
+                }
+
             }
 
         }
