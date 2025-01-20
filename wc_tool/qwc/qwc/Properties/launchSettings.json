@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "qwc": {
+      "commandName": "Project",
+      "commandLineArgs": "-w ..\\..\\..\\test.txt"
+    }
+  }
+}
