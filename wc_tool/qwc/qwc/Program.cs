@@ -5,10 +5,6 @@ namespace qwc
 {
     internal class Program
     {
-        // Delimiters used to split lines into words (e.g., spaces, punctuation marks).
-        // This static field is used in the CountWordsInFile method for splitting text.
-        internal static readonly char[] separator = [' ', '.', ',', '!', '?', ':', ';'];
-
         static void Main(string[] args)
         {
             if (args.Length < 2)
@@ -34,16 +30,17 @@ namespace qwc
 
             static void CountWordsInFile(string filePath)
             {
+                // ***** WORD COUNT GOAL: 58164 (ACHIEVED) ****    <TODO: GET RID OF THIS COMMENT WHEN THE PROGRAM IS COMPLETED>
                 IEnumerable<string> lines = File.ReadLines(filePath);
                 int totalWord = 0;
+
                 foreach (string line in lines)
                 {
-                    //string[] words = line.Split(separator, StringSplitOptions.RemoveEmptyEntries);
-                    MatchCollection matches = Regex.Matches(line.Trim(), @"\b[A-Za-z0-9]+\b");
-                    Console.WriteLine($"Line: {line}");
+                    // The regex pattern @"\S+" matches every sequence of non-whitespace characters.
+                    // This replicates the behavior of the Linux `wc` tool for counting words.
+                    MatchCollection matches = Regex.Matches(line, @"\S+");
+                    totalWord += matches.Count;
                     Console.WriteLine($"Words: {string.Join(", ", matches.Select(m => m.Value))}");
-                    int wordCount = matches.Count;
-                    totalWord += wordCount;
                 }
                 Console.WriteLine(totalWord);
             }
