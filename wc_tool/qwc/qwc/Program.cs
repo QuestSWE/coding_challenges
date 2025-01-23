@@ -24,11 +24,11 @@ namespace qwc
             }
             else
             {
-                CountWordsInFile(args[1]);
+                CountWordsInFile(args[1], args);
             }
 
 
-            static void CountWordsInFile(string filePath)
+            static void CountWordsInFile(string filePath, string[] args)
             {
                 // ***** WORD COUNT GOAL: 58164 (ACHIEVED) ****    <TODO: GET RID OF THIS COMMENT WHEN THE PROGRAM IS COMPLETED>
                 IEnumerable<string> lines = File.ReadLines(filePath);
@@ -40,12 +40,12 @@ namespace qwc
                     // This replicates the behavior of the Linux `wc` tool for counting words.
                     MatchCollection matches = Regex.Matches(line, @"\S+");
                     totalWord += matches.Count;
-                    Console.WriteLine($"Words: {string.Join(", ", matches.Select(m => m.Value))}");
+                    //Console.WriteLine($"Words: {string.Join(", ", matches.Select(m => m.Value))}");
                 }
-                Console.WriteLine(totalWord);
+                Console.WriteLine($"{totalWord} {Path.GetFileName(args[1])}");
             }
 
-            Console.ReadKey();
+            //Console.ReadKey();
         }
     }
 
