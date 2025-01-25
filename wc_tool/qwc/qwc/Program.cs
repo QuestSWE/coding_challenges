@@ -7,48 +7,73 @@ namespace qwc
     {
         static void Main(string[] args)
         {
-            if (args.Length < 2)
+            if (!ArgsValidation(args, out var errorMessage))
             {
-                Console.WriteLine("Error: Invalid option. Use '-w' followed by a file name (e.g., program.exe -w file.txt");
+                Console.WriteLine(errorMessage);
                 return;
             }
-            else if (args[0] != "-w")
+
+            Dictionary<string, Action<string>> options = new()
             {
-                Console.WriteLine("Error: Invalid option. Use '-w' to specify the word count operation.");
-                return;
+                { "-c", CountBytesInFile },
+                { "-w", CountWordsInFile }
+            };
+
+            if (options.TryGetValue(args[0], out Action<string>? value))
+            {
+                value(args[1]);
+            }
+
+            Console.ReadKey();
+
+        }
+
+        static void CountBytesInFile(string filePath)
+        {
+            FileInfo fileInfo = new(filePath);
+            long fileSizeInBytes = fileInfo.Length;
+            Console.WriteLine($"{fileSizeInBytes} {Path.GetFileName(filePath)}");
+
+        }
+
+        static void CountWordsInFile(string filePath)
+        {
+            IEnumerable<string> lines = File.ReadLines(filePath);
+            int totalWord = 0;
+
+            foreach (string line in lines)
+            {
+                // The regex pattern @"\S+" matches every sequence of non-whitespace characters.
+                // This replicates the behavior of the Linux `wc` tool for counting words.
+                MatchCollection matches = Regex.Matches(line, @"\S+");
+                totalWord += matches.Count;
+            }
+            Console.WriteLine($"{totalWord} {Path.GetFileName(filePath)}");
+        }
+
+        internal static readonly string[] sourceArray = ["-c", "-w"];
+        private static bool ArgsValidation(string[] args, out string errorMessage)
+        {
+            errorMessage = string.Empty;
+
+            if (args.Length != 2)
+            {
+                errorMessage = "Error: Invalid input. Use  an option followed by a file name (e.g. -w file.txt).";
+                return false;
+            }
+            else if (!sourceArray.Contains(args[0]))
+            {
+                errorMessage = "Error: Invalid option. Type -help to see options list.";
+                return false;
             }
             else if (!File.Exists(args[1]))
             {
-                Console.WriteLine($"Error: The specified file {args[1]} does not exist.");
-                return;
-            }
-            else
-            {
-                CountWordsInFile(args[1], args);
+                errorMessage = $"Error: The specified file {args[1]} does not exist.";
+                return false;
             }
 
-
-            static void CountWordsInFile(string filePath, string[] args)
-            {
-                // ***** WORD COUNT GOAL: 58164 (ACHIEVED) ****    <TODO: GET RID OF THIS COMMENT WHEN THE PROGRAM IS COMPLETED>
-                IEnumerable<string> lines = File.ReadLines(filePath);
-                int totalWord = 0;
-
-                foreach (string line in lines)
-                {
-                    // The regex pattern @"\S+" matches every sequence of non-whitespace characters.
-                    // This replicates the behavior of the Linux `wc` tool for counting words.
-                    MatchCollection matches = Regex.Matches(line, @"\S+");
-                    totalWord += matches.Count;
-                    //Console.WriteLine($"Words: {string.Join(", ", matches.Select(m => m.Value))}");
-                }
-                Console.WriteLine($"{totalWord} {Path.GetFileName(args[1])}");
-            }
-
-            //Console.ReadKey();
-            //THIS IS A COMMIT MESSAGE TEST
+            return true;
         }
+
     }
-
 }
-
