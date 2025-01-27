@@ -26,7 +26,7 @@ namespace qwc
                 value(args[1]);
             }
 
-            Console.ReadKey();
+            //Console.ReadKey();
 
         }
 
@@ -52,13 +52,29 @@ namespace qwc
             Console.WriteLine($"{totalWord} {Path.GetFileName(filePath)}");
         }
 
-        private static void CountCharInFile(string filePath)
+        private static bool HasBOM(string filePath)
         {
-            var lines = File.ReadLines(filePath);
-            var numChar = lines.Sum(line => line.Length);
-            Console.WriteLine($"{numChar} {Path.GetFileName(filePath)}");
+            var bytes = File.ReadAllBytes(filePath);
+
+
+            if (bytes is [0xEF, 0xBB, 0xBF, ..]) return true; // UTF-8 BOM
+            if (bytes is [0xFF, 0xFE, ..]) return true; // UTF-16 LE BOM
+            if (bytes is [0xFE, 0xFF, ..]) return true; // UTF-16 BE BOM
+
+            return false;
         }
 
+
+        // ******TODO: handle UTF-8 with BOM files******
+        private static void CountCharInFile(string filePath)
+        {
+            var lentgh = File.ReadAllText(filePath);
+            var numChar = lentgh.Length;
+
+            Console.WriteLine(HasBOM(filePath)
+                ? $"{numChar + 1} {Path.GetFileName(filePath)}"
+                : $"{numChar} {Path.GetFileName(filePath)}");
+        }
 
         internal static readonly string[] SourceArray = ["-c", "-w", "-l", "-m"];
 
