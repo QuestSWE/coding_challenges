@@ -1,11 +1,10 @@
-﻿using Microsoft.VisualBasic.FileIO;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 
 namespace qwc
 {
     internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             if (!ArgsValidation(args, out var errorMessage))
             {
@@ -16,10 +15,13 @@ namespace qwc
             Dictionary<string, Action<string>> options = new()
             {
                 { "-c", CountBytesInFile },
-                { "-w", CountWordsInFile }
+                { "-w", CountWordsInFile },
+                { "-l", CountLinesInFile },
+                { "-m", CountCharInFile}
+
             };
 
-            if (options.TryGetValue(args[0], out Action<string>? value))
+            if (options.TryGetValue(args[0], out var value))
             {
                 value(args[1]);
             }
@@ -28,30 +30,38 @@ namespace qwc
 
         }
 
-        static void CountBytesInFile(string filePath)
+        private static void CountBytesInFile(string filePath)
         {
             FileInfo fileInfo = new(filePath);
-            long fileSizeInBytes = fileInfo.Length;
+            var fileSizeInBytes = fileInfo.Length;
             Console.WriteLine($"{fileSizeInBytes} {Path.GetFileName(filePath)}");
-
         }
 
-        static void CountWordsInFile(string filePath)
+        private static void CountLinesInFile(string filePath)
         {
-            IEnumerable<string> lines = File.ReadLines(filePath);
-            int totalWord = 0;
+            var lines = File.ReadLines(filePath);
+            var numLines = lines.Count();
+            Console.WriteLine($"{numLines} {Path.GetFileName(filePath)}");
+        }
 
-            foreach (string line in lines)
-            {
-                // The regex pattern @"\S+" matches every sequence of non-whitespace characters.
-                // This replicates the behavior of the Linux `wc` tool for counting words.
-                MatchCollection matches = Regex.Matches(line, @"\S+");
-                totalWord += matches.Count;
-            }
+        private static void CountWordsInFile(string filePath)
+        {
+            var lines = File.ReadLines(filePath);
+            var totalWord = lines.Select(line => Regex.Matches(line, @"\S+")).Select(matches => matches.Count).Sum();
+
             Console.WriteLine($"{totalWord} {Path.GetFileName(filePath)}");
         }
 
-        internal static readonly string[] sourceArray = ["-c", "-w"];
+        private static void CountCharInFile(string filePath)
+        {
+            var lines = File.ReadLines(filePath);
+            var numChar = lines.Sum(line => line.Length);
+            Console.WriteLine($"{numChar} {Path.GetFileName(filePath)}");
+        }
+
+
+        internal static readonly string[] SourceArray = ["-c", "-w", "-l", "-m"];
+
         private static bool ArgsValidation(string[] args, out string errorMessage)
         {
             errorMessage = string.Empty;
@@ -61,18 +71,17 @@ namespace qwc
                 errorMessage = "Error: Invalid input. Use  an option followed by a file name (e.g. -w file.txt).";
                 return false;
             }
-            else if (!sourceArray.Contains(args[0]))
+
+            if (!SourceArray.Contains(args[0]))
             {
                 errorMessage = "Error: Invalid option. Type -help to see options list.";
                 return false;
             }
-            else if (!File.Exists(args[1]))
-            {
-                errorMessage = $"Error: The specified file {args[1]} does not exist.";
-                return false;
-            }
 
-            return true;
+            if (File.Exists(args[1])) return true;
+            errorMessage = $"Error: The specified file {args[1]} does not exist.";
+            return false;
+
         }
 
     }

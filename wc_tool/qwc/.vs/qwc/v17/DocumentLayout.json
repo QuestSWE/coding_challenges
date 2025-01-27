@@ -5,10 +5,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{29D7FE69-F472-419D-991D-747D86ECE24B}|qwc\\qwc.csproj|c:\\users\\guts\\projects\\coding_challenges\\wc_tool\\qwc\\qwc\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{29D7FE69-F472-419D-991D-747D86ECE24B}|qwc\\qwc.csproj|solutionrelative:qwc\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{29D7FE69-F472-419D-991D-747D86ECE24B}|qwc\\qwc.csproj|c:\\users\\guts\\projects\\coding_challenges\\wc_tool\\qwc\\qwc\\qwc.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
-      "RelativeMoniker": "D:0:0:{29D7FE69-F472-419D-991D-747D86ECE24B}|qwc\\qwc.csproj|solutionrelative:qwc\\qwc.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,19 +14,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 328,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "qwc",
-              "DocumentMoniker": "C:\\Users\\Guts\\Projects\\coding_challenges\\wc_tool\\qwc\\qwc\\qwc.csproj",
-              "RelativeDocumentMoniker": "qwc\\qwc.csproj",
-              "ToolTip": "C:\\Users\\Guts\\Projects\\coding_challenges\\wc_tool\\qwc\\qwc\\qwc.csproj",
-              "RelativeToolTip": "qwc\\qwc.csproj",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-01-20T18:16:03.652Z"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -39,7 +24,7 @@
               "RelativeDocumentMoniker": "qwc\\Program.cs",
               "ToolTip": "C:\\Users\\Guts\\Projects\\coding_challenges\\wc_tool\\qwc\\qwc\\Program.cs",
               "RelativeToolTip": "qwc\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAcwDsAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-15T07:36:55.104Z",
               "EditorCaption": ""
