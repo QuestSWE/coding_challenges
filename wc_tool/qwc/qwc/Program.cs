@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Text;
+using System.Text.RegularExpressions;
 
 namespace qwc
 {
@@ -52,28 +53,33 @@ namespace qwc
             Console.WriteLine($"{totalWord} {Path.GetFileName(filePath)}");
         }
 
-        private static bool HasBOM(string filePath)
-        {
-            var bytes = File.ReadAllBytes(filePath);
+        //private static bool HasBOM(string filePath)
+        //{
+        //    var bytes = File.ReadAllBytes(filePath);
 
 
-            if (bytes is [0xEF, 0xBB, 0xBF, ..]) return true; // UTF-8 BOM
-            if (bytes is [0xFF, 0xFE, ..]) return true; // UTF-16 LE BOM
-            if (bytes is [0xFE, 0xFF, ..]) return true; // UTF-16 BE BOM
+        //    if (bytes is [0xEF, 0xBB, 0xBF, ..]) return true; // UTF-8 BOM
+        //    if (bytes is [0xFF, 0xFE, ..]) return true; // UTF-16 LE BOM
+        //    if (bytes is [0xFE, 0xFF, ..]) return true; // UTF-16 BE BOM
 
-            return false;
-        }
+        //    return false;
+        //}
 
-
-        // ******TODO: handle UTF-8 with BOM files******
         private static void CountCharInFile(string filePath)
         {
-            var lentgh = File.ReadAllText(filePath);
-            var numChar = lentgh.Length;
+            using var sr = new StreamReader(
+                new MemoryStream(File.ReadAllBytes(filePath)),
+                new UTF8Encoding(encoderShouldEmitUTF8Identifier: false),
+                detectEncodingFromByteOrderMarks: false);
 
-            Console.WriteLine(HasBOM(filePath)
-                ? $"{numChar + 1} {Path.GetFileName(filePath)}"
-                : $"{numChar} {Path.GetFileName(filePath)}");
+            var total = 0;
+            Span<char> buffer = new char[1024];
+            while (sr.ReadBlock(buffer) is var count and > 0)
+            {
+                total += count;
+            }
+
+            Console.WriteLine($"{total} {Path.GetFileName(filePath)}");
         }
 
         internal static readonly string[] SourceArray = ["-c", "-w", "-l", "-m"];
