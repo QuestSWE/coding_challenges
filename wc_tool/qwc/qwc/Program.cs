@@ -13,14 +13,18 @@ namespace qwc
                 return;
             }
 
+            if (args.Length == 1)
+            {
+                UseAllOptions(args[0], true);
+                return;
+            }
+
             Dictionary<string, Func<string, int>> options = new()
             {
                 { "-c", CountBytesInFile },
                 { "-w", CountWordsInFile },
                 { "-l", CountLinesInFile },
-                { "-m", CountCharInFile},
-                { "-", UseAllOptions }
-
+                { "-m", CountCharInFile}
             };
 
             if (options.TryGetValue(args[0], out var value))
@@ -31,32 +35,41 @@ namespace qwc
             //Console.ReadKey();
 
         }
-
         private static int CountBytesInFile(string filePath)
+            => CountBytesInFile(filePath, true);
+        private static int CountBytesInFile(string filePath, bool printResult)
         {
             FileInfo fileInfo = new(filePath);
             var fileSizeInBytes = fileInfo.Length;
-            Console.WriteLine($"{fileSizeInBytes} {Path.GetFileName(filePath)}");
+            if (printResult)
+                Console.WriteLine($"{fileSizeInBytes} {Path.GetFileName(filePath)}");
+
             return (int)fileSizeInBytes;
         }
 
         private static int CountLinesInFile(string filePath)
+            => CountLinesInFile(filePath, true);
+        private static int CountLinesInFile(string filePath, bool printResult)
         {
             var lines = File.ReadLines(filePath);
             var numLines = lines.Count();
-            Console.WriteLine($"{numLines} {Path.GetFileName(filePath)}");
+            if (printResult)
+                Console.WriteLine($"{numLines} {Path.GetFileName(filePath)}");
+
             return numLines;
         }
-
         private static int CountWordsInFile(string filePath)
+            => CountWordsInFile(filePath, true);
+        private static int CountWordsInFile(string filePath, bool printResult)
         {
             var lines = File.ReadLines(filePath);
             var totalWord = lines
                 .Select(line => Regex.Matches(line, @"\S+"))
                 .Select(matches => matches.Count)
                 .Sum();
+            if (printResult)
+                Console.WriteLine($"{totalWord} {Path.GetFileName(filePath)}");
 
-            Console.WriteLine($"{totalWord} {Path.GetFileName(filePath)}");
             return totalWord;
         }
 
@@ -72,7 +85,10 @@ namespace qwc
         /// - Outputs the total character count along with the file name.
         /// </remarks>
         /// TODO: handle UTF-16 LE, UTF-16 BE, UTF-32 LE, UTF-32 BE
+
         private static int CountCharInFile(string filePath)
+            => CountCharInFile(filePath, true);
+        private static int CountCharInFile(string filePath, bool printResult)
         {
             using var sr = new StreamReader(
                 new MemoryStream(File.ReadAllBytes(filePath)),
@@ -85,44 +101,53 @@ namespace qwc
             {
                 totalChar += count;
             }
+            if (printResult)
+                Console.WriteLine($"{totalChar} {Path.GetFileName(filePath)}");
 
-            Console.WriteLine($"{totalChar} {Path.GetFileName(filePath)}");
             return totalChar;
         }
 
-        private static int UseAllOptions(string filePath)
+        private static void UseAllOptions(string filePath, bool printResult)
         {
-            var lineCount = CountLinesInFile(filePath);
-            var wordCount = CountWordsInFile(filePath);
-            var byteCount = CountBytesInFile(filePath);
+            var lineCount = CountLinesInFile(filePath, false);
+            var wordCount = CountWordsInFile(filePath, false);
+            var byteCount = CountBytesInFile(filePath, false);
 
-            Console.WriteLine($"{lineCount} {wordCount} {byteCount} {Path.GetFileName(filePath)}");
+            if (printResult)
+                Console.WriteLine($"{lineCount} {wordCount} {byteCount} {Path.GetFileName(filePath)}");
 
-            return -1;
         }
 
-        internal static readonly string[] SourceArray = ["-c", "-w", "-l", "-m", "-"];
+        internal static readonly string[] SourceArray = ["-c", "-w", "-l", "-m"];
 
         private static bool ArgsValidation(string[] args, out string errorMessage)
         {
             errorMessage = string.Empty;
 
-            if (args.Length != 2)
+            if (args.Length is < 1 or > 2)
             {
-                errorMessage = "Error: Invalid input. Use  an option followed by a file name (e.g. -w file.txt).";
+                errorMessage = "Error: Invalid input. Use  an option followed by a file name (e.g. -w file.txt). Using only the file name = -c, -l, -w";
+                return false;
+            }
+
+            if (args.Length == 1)
+            {
+                if (File.Exists(args[0])) return true;
+                errorMessage = $"Error: The specified file {args[0]} does not exist.";
                 return false;
             }
 
             if (!SourceArray.Contains(args[0]))
             {
-                errorMessage = "Error: Invalid option. Type -help to see options list.";
+                errorMessage = "Error: Invalid option. Type -help to see options list."; // TODO add instruction of help option;
                 return false;
             }
 
+
             if (File.Exists(args[1])) return true;
+
             errorMessage = $"Error: The specified file {args[1]} does not exist.";
             return false;
-
         }
 
     }
