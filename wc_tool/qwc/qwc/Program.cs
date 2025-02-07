@@ -7,6 +7,17 @@ namespace qwc
     {
         private static void Main(string[] args)
         {
+            if (args.Length == 0)
+            {
+                ReadFromStandardInput();
+            }
+
+            if (args.Length == 1 && args[0].Equals("-help", StringComparison.OrdinalIgnoreCase))
+            {
+                PrintHelpMessage();
+                return;
+            }
+
             if (!ArgsValidation(args, out var errorMessage))
             {
                 Console.WriteLine(errorMessage);
@@ -21,10 +32,10 @@ namespace qwc
 
             Dictionary<string, Func<string, int>> options = new()
             {
+                { "-m", CountCharInFile},
                 { "-c", CountBytesInFile },
                 { "-w", CountWordsInFile },
-                { "-l", CountLinesInFile },
-                { "-m", CountCharInFile}
+                { "-l", CountLinesInFile }
             };
 
             if (options.TryGetValue(args[0], out var value))
@@ -32,7 +43,6 @@ namespace qwc
                 value(args[1]);
             }
 
-            //Console.ReadKey();
 
         }
         private static int CountBytesInFile(string filePath)
@@ -58,6 +68,7 @@ namespace qwc
 
             return numLines;
         }
+
         private static int CountWordsInFile(string filePath)
             => CountWordsInFile(filePath, true);
         private static int CountWordsInFile(string filePath, bool printResult)
@@ -118,36 +129,63 @@ namespace qwc
 
         }
 
+        private static void ReadFromStandardInput()
+        {
+            var input = Console.ReadLine();
+            Console.WriteLine(input);
+        }
+
+        private static void PrintHelpMessage()
+        {
+            Console.WriteLine("Quest Word Counter - Help Guide\n");
+            Console.WriteLine("Usage:");
+            Console.WriteLine("  qwc [OPTION] <file>\n");
+
+            Console.WriteLine("Options:");
+            Console.WriteLine("  -c     Count bytes in the file.");
+            Console.WriteLine("  -w     Count words in the file.");
+            Console.WriteLine("  -l     Count lines in the file.");
+            Console.WriteLine("  -m     Count characters in the file.");
+            Console.WriteLine("  -help  Show this help message.\n");
+
+            Console.WriteLine("Examples:");
+            Console.WriteLine("  qwc -w myfile.txt    # Count words in myfile.txt");
+            Console.WriteLine("  qwc -l myfile.txt    # Count lines in myfile.txt");
+            Console.WriteLine("  qwc myfile.txt       # Default: counts bytes, words, and lines\n");
+
+            Console.WriteLine("Notes:");
+            Console.WriteLine("  - You must provide one option and a file name.");
+            Console.WriteLine("  - If no option is provided, the program defaults to counting bytes, words, and lines.");
+            Console.WriteLine("  - Ensure that the specified file exists before running the command.");
+        }
+
         internal static readonly string[] SourceArray = ["-c", "-w", "-l", "-m"];
 
         private static bool ArgsValidation(string[] args, out string errorMessage)
         {
             errorMessage = string.Empty;
 
-            if (args.Length is < 1 or > 2)
+            if (args.Length > 2)
             {
-                errorMessage = "Error: Invalid input. Use  an option followed by a file name (e.g. -w file.txt). Using only the file name = -c, -l, -w";
+                errorMessage = "Error: Invalid input. Use  an option followed by a file name (e.g. -w file.txt). Type -help for more informations";
                 return false;
             }
 
             if (args.Length == 1)
             {
                 if (File.Exists(args[0])) return true;
-                errorMessage = $"Error: The specified file {args[0]} does not exist.";
+                errorMessage = $"Error: The specified file {args[0]} does not exist. Type -help for more informations";
                 return false;
             }
 
-            if (!SourceArray.Contains(args[0]))
-            {
-                errorMessage = "Error: Invalid option. Type -help to see options list."; // TODO add instruction of help option;
-                return false;
-            }
-
-
-            if (File.Exists(args[1])) return true;
-
-            errorMessage = $"Error: The specified file {args[1]} does not exist.";
+            if (args.Length != 1 || SourceArray.Contains(args[0])) return false;
+            errorMessage = "Error: Invalid option. Type -help to see options list. Type -help for more informations";
             return false;
+
+            // TODO fix this condition below
+            //if (args.Length == 2 && File.Exists(args[1])) return true;
+            //errorMessage = $"Error: The specified file {args[1]} does not exist. Type -help for more informations";
+            //return false;
         }
 
     }
