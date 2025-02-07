@@ -10,6 +10,7 @@ namespace qwc
             if (args.Length == 0)
             {
                 ReadFromStandardInput();
+                return;
             }
 
             if (args.Length == 1 && args[0].Equals("-help", StringComparison.OrdinalIgnoreCase))
@@ -132,7 +133,7 @@ namespace qwc
         private static void ReadFromStandardInput()
         {
             var input = Console.ReadLine();
-            Console.WriteLine(input);
+
         }
 
         private static void PrintHelpMessage()
@@ -178,14 +179,16 @@ namespace qwc
                 return false;
             }
 
-            if (args.Length != 1 || SourceArray.Contains(args[0])) return false;
-            errorMessage = "Error: Invalid option. Type -help to see options list. Type -help for more informations";
-            return false;
+            if (args.Length == 1 && !SourceArray.Contains(args[0]))
+            {
+                errorMessage = "Error: Invalid option. Type -help to see options list. Type -help for more informations";
+                return false;
 
-            // TODO fix this condition below
-            //if (args.Length == 2 && File.Exists(args[1])) return true;
-            //errorMessage = $"Error: The specified file {args[1]} does not exist. Type -help for more informations";
-            //return false;
+            }
+
+            if (args.Length == 2 && File.Exists(args[1])) return true;
+            errorMessage = $"Error: The specified file {args[1]} does not exist. Type -help for more informations";
+            return false;
         }
 
     }
