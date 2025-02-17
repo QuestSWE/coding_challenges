@@ -74,15 +74,33 @@ namespace qwc
             => CountWordsInFile(filePath, true);
         private static int CountWordsInFile(string filePath, bool printResult)
         {
-            var lines = File.ReadLines(filePath);
-            var totalWord = lines
-                .Select(line => Regex.Matches(line, @"\S+"))
-                .Select(matches => matches.Count)
-                .Sum();
+            using var sr = new StreamReader(filePath);
+            var totalWord = 0;
+
+            while (!sr.EndOfStream)
+            {
+                var lines = sr.ReadLine();
+                if (!string.IsNullOrEmpty(lines))
+                {
+                    totalWord += Regex.Matches(lines, @"\S+").Count;
+                }
+            }
+
             if (printResult)
                 Console.WriteLine($"{totalWord} {Path.GetFileName(filePath)}");
-
             return totalWord;
+
+
+            // LINQ way to do the same: 
+            //var lines = File.ReadLines(filePath);
+            //var totalWord = lines
+            //    .Select(line => Regex.Matches(line, @"\S+"))
+            //    .Select(matches => matches.Count)
+            //    .Sum();
+            //if (printResult)
+            //    Console.WriteLine($"{totalWord} {Path.GetFileName(filePath)}");
+            //return totalWord;
+
         }
 
         /// <summary>
@@ -133,7 +151,7 @@ namespace qwc
         private static void ReadFromStandardInput()
         {
             var input = Console.ReadLine();
-
+            Console.WriteLine(input);
         }
 
         private static void PrintHelpMessage()
